@@ -47,8 +47,8 @@ public final class Constants {
     public static int PORT_MOTOR_SHOOTER_WHEEL_TWO = 7; //Victor SPX CAN
     public static int PORT_MOTOR_INTAKE_ELEVATOR = 5; //Victor SPX CAN
     public static int PORT_MOTOR_INTAKE_WHEEL = 8; //Victor SPX CAN
-    public static int PORT_MOTOR_LIFT = 9; //Victor SP PWM
-    public static int PORT_MOTOR_INTAKE_WINCH = 10; //Spark PWM
+    public static int PORT_MOTOR_LIFT = 1; //Victor SP PWM
+    public static int PORT_MOTOR_INTAKE_WINCH = 0; //Spark PWM
     //Sensors
     public static int PORT_ANALOG_ULTRASONIC_TOP = 0;
     public static int PORT_ANALOG_ULTRASONIC_BOTTOM = 1;
@@ -56,7 +56,7 @@ public final class Constants {
     public static double SCALER_XBOX_CONTROLLER = 0.7;
     public static double SCALER_INTAKE_WHEEL = 0.5;
     public static double SCALER_INTAKE_ELEVATOR = 0.2; //The Zuck Constant
-    public static double SCALER_INTAKE_WINCH = 0.2;
+    public static double SCALER_INTAKE_WINCH = 0.4;
     public static double SCALER_LIFT = 0.5;
     public static double SCALER_DRIVE_FORWARD = 0.7;
     public static double SCALER_DRIVE_SIDE = 0.6;
