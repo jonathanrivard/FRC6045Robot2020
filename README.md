@@ -1,6 +1,6 @@
 # Team 6045 - Sabre Robotics
 ## FIRST Robotics Competition 3rd Year Team
-## Inspire Robot
+## Infinite Recharge Robot
 ## Name: Roll
 ## Motto: “We are on the rise!”
 
