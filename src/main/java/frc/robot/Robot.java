@@ -135,6 +135,7 @@ public class Robot extends TimedRobot {
       }
       m_robotContainer.getShootWithJoystick().schedule();
       m_robotContainer.getIntakeWithJoystick().schedule();
+      m_robotContainer.getLiftWithJoystick().schedule();
     }else {
       if(!limelightWasVision){
         m_robotContainer.getLimelight().setVision();
