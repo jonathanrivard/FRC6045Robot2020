@@ -54,6 +54,7 @@ public class ShootWithJoystick extends CommandBase {
       scaler = -0.5 * scaler + 0.5;
       //Set the shooter wheel with the slider scaler
       shooterWheel.setWheel(-1 * scaler);
+      System.out.println("Shooter Percent: " + scaler);
       //shooterWheel.setWheel(mainJoy.getTriggerAxis(Hand.kRight) * -1);
     }else {
       //If the button is not pressed, stop wheel

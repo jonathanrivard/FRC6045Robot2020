@@ -17,6 +17,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.AutonomousCommand;
+import frc.robot.commands.FollowWithLimelight;
 import frc.robot.commands.IntakeWithJoystick;
 import frc.robot.commands.LiftWithJoystick;
 import frc.robot.commands.ShootWithJoystick;
@@ -49,6 +50,7 @@ public class RobotContainer {
   private final IntakeWithJoystick m_intakeWithJoystick = new IntakeWithJoystick(m_intake);
   private final ShootWithLimelight m_shootWithLimelight = new ShootWithLimelight(m_limelight, m_shooterWheel, m_intake, m_drivetrain);
   private final LiftWithJoystick m_liftWithJoystick = new LiftWithJoystick(m_lift);
+  private final FollowWithLimelight m_followWithLimelight = new FollowWithLimelight(m_limelight, m_drivetrain);
   //Command Getters
   public ArcadeDrive getArcadeDrive(){ return m_arcadeDrive; }
   public TankDrive getTankDrive(){ return m_tankDrive; }
@@ -56,6 +58,7 @@ public class RobotContainer {
   public IntakeWithJoystick getIntakeWithJoystick(){ return m_intakeWithJoystick; }
   public ShootWithLimelight getShootWithLimelight() { return m_shootWithLimelight; }
   public LiftWithJoystick getLiftWithJoystick() { return m_liftWithJoystick; }
+  public FollowWithLimelight getFollowWithLimelight() { return m_followWithLimelight; }
   //Subsystem Getters
   public Limelight getLimelight(){ return m_limelight; }
 

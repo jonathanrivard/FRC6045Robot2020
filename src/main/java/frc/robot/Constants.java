@@ -57,8 +57,8 @@ public final class Constants {
     public static double SCALER_INTAKE_WHEEL = 0.5;
     public static double SCALER_INTAKE_ELEVATOR = 0.2; //The Zuck Constant
     public static double SCALER_INTAKE_WINCH = 0.3;
-    public static double SCALER_LIFT = 0.1;
-    public static double SCALER_DRIVE_FORWARD = 0.7;
+    public static double SCALER_LIFT = 0.3;
+    public static double SCALER_DRIVE_FORWARD = 0.85;
     public static double SCALER_DRIVE_SIDE = 0.6;
     public static double SCALER_ULTRASONIC_SENSOR = 0.125;
     //Threshholds
