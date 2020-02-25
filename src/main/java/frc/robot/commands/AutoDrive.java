@@ -24,6 +24,7 @@ public class AutoDrive extends CommandBase {
     addRequirements(drivetrain);
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
+    this.drivetrain = drivetrain;
   }
 
   // Called when the command is initially scheduled.
@@ -36,7 +37,7 @@ public class AutoDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.getDifferentialDrive().tankDrive(leftSpeed * -1, rightSpeed * -1);
+    drivetrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
     System.out.println("Auto Drive Execute");
   }
 
@@ -48,6 +49,6 @@ public class AutoDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

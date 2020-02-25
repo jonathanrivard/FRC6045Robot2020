@@ -31,7 +31,7 @@ public class AutoIntake extends CommandBase {
   @Override
   public void initialize() {
     intake.setWheel(wheelSpeed);
-    intake.setElevator(elevatorSpeed);
+    intake.setElevator(elevatorSpeed * -1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -47,6 +47,6 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

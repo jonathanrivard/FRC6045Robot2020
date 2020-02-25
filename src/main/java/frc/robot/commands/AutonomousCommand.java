@@ -7,14 +7,9 @@
 
 package frc.robot.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-//import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Constants;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.ShooterWheel;
 
@@ -25,14 +20,16 @@ public class AutonomousCommand extends SequentialCommandGroup {
   /**
    * Creates a new AutonomousCommand.
    */
-  public AutonomousCommand(ShooterWheel m_shooterWheel, Intake m_intake) {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
-    super(new WaitCommand(2.0), new AutoShoot(m_shooterWheel, 0.0));
-    //super(/*new AutoShoot(m_shooterWheel, -1.0), /*new WaitCommand(1.0),*/ new AutoIntake(m_intake, 0.0, Constants.SCALER_INTAKE_ELEVATOR)/*, new WaitCommand(5), new AutoIntake(m_intake, 0.0, 0.0), new AutoShoot(m_shooterWheel, 0.0)*/);
-    /*List<Command> commands = new ArrayList<Command>();
-    commands.add(new AutoShoot(m_shooterWheel, -1.0));
-    commands.add(new WaitCommand(2.0));
-    commands.add(new AutoShoot(m_shooterWheel, 0.0));*/
+  public AutonomousCommand(ShooterWheel m_shooterWheel, Intake m_intake, Drivetrain m_drivetrain) {
+    addCommands(
+      new AutoShoot(m_shooterWheel, 0.3),
+      new WaitCommand(2),
+      new AutoIntake(m_intake, 0.0, 0.3),
+      new WaitCommand(2),
+      new AutoShoot(m_shooterWheel, 0.0),
+      new AutoIntake(m_intake, 0.0, 0.0),
+      new AutoDrive(m_drivetrain, -0.8, -0.8),
+      new WaitCommand(5),
+      new AutoDrive(m_drivetrain, 0.0, 0.0));
   }
 }

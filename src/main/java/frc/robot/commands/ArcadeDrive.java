@@ -40,11 +40,13 @@ public class ArcadeDrive extends CommandBase {
     //Get values from main joystick
     double forwardValue = mainJoy.getY() * -1;
     double sideValue = mainJoy.getX();
+    double scaler = mainJoy.getRawAxis(3);
+    scaler = -0.5 * scaler + 0.5;
     //Threshhold the values
     forwardValue = (Math.abs(forwardValue) > Constants.THRESHHOLD_JOYSTICKS) ? forwardValue : 0.0;
     sideValue = (Math.abs(sideValue) > Constants.THRESHHOLD_JOYSTICKS) ? sideValue : 0.0;
     //Pass into differntial drive
-    drivetrain.getDifferentialDrive().arcadeDrive(forwardValue * Constants.SCALER_DRIVE_FORWARD, sideValue * Constants.SCALER_DRIVE_SIDE);
+    drivetrain.getDifferentialDrive().arcadeDrive(forwardValue * Constants.SCALER_DRIVE_FORWARD * scaler, sideValue * Constants.SCALER_DRIVE_SIDE * scaler);
   }
 
   // Called once the command ends or is interrupted.

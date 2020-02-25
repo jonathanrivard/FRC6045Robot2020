@@ -22,7 +22,8 @@ public class ShootWithJoystick extends CommandBase {
 
   ShooterWheel shooterWheel;
   Limelight limelight;
-  Joystick shootJoy;
+  Joystick mainJoy;
+  Joystick rightJoy;
   //XboxController mainJoy;
 
   public ShootWithJoystick(ShooterWheel shooterWheel) {
@@ -31,7 +32,8 @@ public class ShootWithJoystick extends CommandBase {
     //addRequirements(limelight);
     this.shooterWheel = shooterWheel;
     //this.limelight = limelight;
-    shootJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
+    mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
+    rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
     //mainJoy = new XboxController(Constants.USB_XBOX_CONTROLLER);
   }
 
@@ -42,23 +44,50 @@ public class ShootWithJoystick extends CommandBase {
     shooterWheel.setWheel(0.0);
   }
 
+
+  private void executeTankDrive(){
+    //If our shoot button is pressed
+    if(rightJoy.getRawButton(Constants.BUTTON_R_SHOOT)){
+      //if(mainJoy.getTriggerAxis(Hand.kRight) > 0){
+        //Get scaler from slider on joystick
+        double scaler = rightJoy.getRawAxis(3);
+        //Adjust scaler to go from 0 to 1
+        scaler = -0.5 * scaler + 0.5;
+        //Set the shooter wheel with the slider scaler
+        shooterWheel.setWheel(-1 * scaler);
+        System.out.println("Shooter Percent: " + scaler);
+        //shooterWheel.setWheel(mainJoy.getTriggerAxis(Hand.kRight) * -1);
+      }else {
+        //If the button is not pressed, stop wheel
+        shooterWheel.setWheel(0.0);
+      }
+  }
+
+  private void executeArcadeDrive(){
+    //If our shoot button is pressed
+    if(mainJoy.getRawButton(Constants.BUTTON_R_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_SHOOT)){
+      //if(mainJoy.getTriggerAxis(Hand.kRight) > 0){
+        //Get scaler from slider on joystick
+        double scaler = rightJoy.getRawAxis(3);
+        //Adjust scaler to go from 0 to 1
+        scaler = -0.5 * scaler + 0.5;
+        //Set the shooter wheel with the slider scaler
+        shooterWheel.setWheel(-1 * scaler);
+        System.out.println("Shooter Percent: " + scaler);
+        //shooterWheel.setWheel(mainJoy.getTriggerAxis(Hand.kRight) * -1);
+    }else {
+        //If the button is not pressed, stop wheel
+        shooterWheel.setWheel(0.0);
+    }
+  }
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //If our shoot button is pressed
-    if(shootJoy.getRawButton(Constants.BUTTON_R_SHOOT)){
-    //if(mainJoy.getTriggerAxis(Hand.kRight) > 0){
-      //Get scaler from slider on joystick
-      double scaler = shootJoy.getRawAxis(3);
-      //Adjust scaler to go from 0 to 1
-      scaler = -0.5 * scaler + 0.5;
-      //Set the shooter wheel with the slider scaler
-      shooterWheel.setWheel(-1 * scaler);
-      System.out.println("Shooter Percent: " + scaler);
-      //shooterWheel.setWheel(mainJoy.getTriggerAxis(Hand.kRight) * -1);
-    }else {
-      //If the button is not pressed, stop wheel
-      shooterWheel.setWheel(0.0);
+    if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
+      executeTankDrive();
+    }else { //Arcade Drive
+      executeArcadeDrive();
     }
   }
 

@@ -10,12 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.ArcadeDrive;
-//import frc.robot.commands.AutoDrive;
-import frc.robot.commands.AutoIntake;
-import frc.robot.commands.AutoShoot;
 import frc.robot.commands.AutonomousCommand;
 import frc.robot.commands.FollowWithLimelight;
 import frc.robot.commands.IntakeWithJoystick;
@@ -88,14 +83,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    AutonomousCommand command = new AutonomousCommand(m_shooterWheel, m_intake);
-    /*
-    command.addCommands(new AutoDrive(m_drivetrain, 0.5, 0.5), new WaitCommand(1)); //Drive forward for 1 second
-    command.addCommands(new AutoDrive(m_drivetrain, 0.0, 0.0));
-    command.addCommands(new AutoDrive(m_drivetrain, -0.4, 0.4), new WaitCommand(1));
-    command.addCommands(new ShootWithLimelight(m_limelight, m_shooterWheel, m_intake, m_drivetrain));
-    */
-
+    AutonomousCommand command = new AutonomousCommand(m_shooterWheel, m_intake, m_drivetrain);
     return command;
   }
 }

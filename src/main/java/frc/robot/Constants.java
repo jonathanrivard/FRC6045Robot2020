@@ -34,10 +34,13 @@ public final class Constants {
     public static int BUTTON_R_LIMELIGHT = 3;
     public static int BUTTON_R_INTAKE_ELEVATOR_DOWN = 4;
     //  Main Joystick
-    public static int BUTTON_M_ELEVATOR_UP = 7;
-    public static int BUTTON_M_ELEVATOR_DOWN = 8;
-    public static int BUTTON_M_INTAKE_WHEEL_IN = 1;
-    public static int BUTTOn_M_INTAKE_WHEEL_OUT = 2;
+    public static int BUTTON_M_SHOOT = 2;
+    public static int BUTTON_M_INTAKE_AND_ELEVATOR = 11;
+    public static int BUTTON_M_ELEVATOR_UP = 8;
+    public static int BUTTON_M_ELEVATOR_DOWN = 10;
+    public static int BUTTON_M_INTAKE_WHEEL_IN = 7;
+    public static int BUTTOn_M_INTAKE_WHEEL_OUT = 9;
+    public static int BUTTON_M_LIMELIGHT = 1;
     //Motors
     public static int PORT_MOTOR_FRONT_LEFT = 0; //Talon SRX CAN
     public static int PORT_MOTOR_BACK_LEFT = 1; //Talon SRX CAN
@@ -57,7 +60,7 @@ public final class Constants {
     public static double SCALER_INTAKE_WHEEL = 0.5;
     public static double SCALER_INTAKE_ELEVATOR = 0.2; //The Zuck Constant
     public static double SCALER_INTAKE_WINCH = 0.3;
-    public static double SCALER_LIFT = 0.3;
+    public static double SCALER_LIFT = 1.0;
     public static double SCALER_DRIVE_FORWARD = 0.85;
     public static double SCALER_DRIVE_SIDE = 0.6;
     public static double SCALER_ULTRASONIC_SENSOR = 0.125;

@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -25,8 +23,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private Joystick mainJoy;
-  private boolean limelightWasVision;
-  //private XboxController mainJoy;
+  private Joystick rightJoy;
   CameraServer server;
   
 
@@ -109,40 +106,41 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
-    //mainJoy = new XboxController(Constants.USB_XBOX_CONTROLLER);
-    limelightWasVision = false;
+    rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
     m_robotContainer.getLimelight().setDriver();
   }
 
   /**
    * This function is called periodically during operator control.
    */
+
+  private void teleopPeriodicGenericCommands(){
+    m_robotContainer.getShootWithJoystick().schedule();
+    m_robotContainer.getIntakeWithJoystick().schedule();
+    m_robotContainer.getLiftWithJoystick().schedule();
+  }
+
   @Override
   public void teleopPeriodic() {
     //Run all nessasary commands during teleop periodic
-    //If the button for limelight constol isn't pressed
-    if(!mainJoy.getRawButton(Constants.BUTTON_R_LIMELIGHT)){
-    //if(!mainJoy.getXButton()){
-      if(limelightWasVision){
+    if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
+      if(!rightJoy.getRawButton(Constants.BUTTON_R_LIMELIGHT)){ //Not limelight
         m_robotContainer.getLimelight().setDriver();
-        limelightWasVision = false;
-      }
-
-      if(Constants.SETTING_DRIVE_TYPE == 0){
         m_robotContainer.getTankDrive().schedule();
-      }else {
-        m_robotContainer.getArcadeDrive().schedule();
-      }
-      m_robotContainer.getShootWithJoystick().schedule();
-      m_robotContainer.getIntakeWithJoystick().schedule();
-      m_robotContainer.getLiftWithJoystick().schedule();
-    }else {
-      if(!limelightWasVision){
+        teleopPeriodicGenericCommands();
+      }else { //Run limelight
         m_robotContainer.getLimelight().setVision();
-        limelightWasVision = true;
+        m_robotContainer.getShootWithLimelight().schedule();
       }
-      //If the button for limelight control IS pressed, run shoot with limelight
-      m_robotContainer.getShootWithLimelight().schedule();
+    }else { //Arcade Drive
+      if(!mainJoy.getRawButton(Constants.BUTTON_M_LIMELIGHT)){ //Not limelight
+        m_robotContainer.getLimelight().setDriver();
+        m_robotContainer.getArcadeDrive().schedule();
+        teleopPeriodicGenericCommands();
+      }else { //Run limelight
+        m_robotContainer.getLimelight().setVision();
+        m_robotContainer.getShootWithLimelight().schedule();
+      }
     }
   }
 

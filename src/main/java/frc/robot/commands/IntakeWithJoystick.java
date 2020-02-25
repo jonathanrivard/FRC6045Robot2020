@@ -45,9 +45,7 @@ public class IntakeWithJoystick extends CommandBase {
     intake.setElevator(0.0);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
+  private void executeTankDrive(){
     //If the intake button is pressed, activate motors
     //Check for elevator
     if((leftJoy.getRawButton(Constants.BUTTON_L_INTAKE_ELEVATOR_UP) || rightJoy.getRawButton(Constants.BUTTON_R_INTAKE_ElEVATOR_UP_R)) || mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_UP)){
@@ -76,9 +74,41 @@ public class IntakeWithJoystick extends CommandBase {
     }else {
       intake.setWinch(0.0);
     }
-    
+  }
 
-    /*
+  private void executeArcadeDrive(){
+    //If the intake button is pressed, activate motors
+    //Check for elevator
+    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR) || mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_UP)){
+      intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1); //Elevator Up
+    }else if(mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_DOWN)){
+      intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR); //Elevator Down
+    }else {
+      intake.setElevator(0.0);
+    }
+    //Check for wheel
+    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_WHEEL_IN)){
+      intake.setWheel(Constants.SCALER_INTAKE_WHEEL); //Wheel In
+      System.out.println("USensorTop: " + intake.getTopDistance());
+      System.out.println("USensorBot: " + intake.getBottomDistance());
+      System.out.println();
+    }else if(mainJoy.getRawButton(Constants.BUTTOn_M_INTAKE_WHEEL_OUT)){
+      intake.setWheel(Constants.SCALER_INTAKE_WHEEL * -1); //Wheel Out
+    }else {
+      intake.setWheel(0.0);
+    }
+    //Check for winch
+    if(leftJoy.getPOV() == 0 || mainJoy.getPOV() == 0){
+      intake.setWinch(Constants.SCALER_INTAKE_WINCH);
+    }else if(leftJoy.getPOV() == 180 || mainJoy.getPOV() == 180){
+      intake.setWinch(Constants.SCALER_INTAKE_WINCH * -1);
+    }else {
+      intake.setWinch(0.0);
+    }
+  }
+
+  /*
+  private void executeXboxDrive(){
     if(mainJoy.getBumper(Hand.kLeft) || mainJoy.getBumper(Hand.kRight)){
       intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1);
     }else if(mainJoy.getYButton()){
@@ -102,7 +132,17 @@ public class IntakeWithJoystick extends CommandBase {
     }else {
       intake.setWinch(0.0);
     }
-    */
+  }
+  */
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
+      executeTankDrive();
+    }else { //Arcade Drive
+      executeArcadeDrive();
+    }
   }
 
   // Called once the command ends or is interrupted.
