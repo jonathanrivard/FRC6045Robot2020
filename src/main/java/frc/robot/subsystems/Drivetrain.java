@@ -31,6 +31,9 @@ public class Drivetrain extends SubsystemBase {
   //Declare and define getter for differential drive
   public DifferentialDrive getDifferentialDrive(){ return drive; }
 
+  public int getLeftQuad(){ return leftBackMotor.getSelectedSensorPosition(); }
+  public int getRightQuad(){ return rightBackMotor.getSelectedSensorPosition(); }
+
   public Drivetrain() {
     //Init motors
     leftFrontMotor = new WPI_TalonSRX(Constants.PORT_MOTOR_FRONT_LEFT);

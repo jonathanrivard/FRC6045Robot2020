@@ -8,8 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -96,6 +101,7 @@ public class Robot extends TimedRobot {
     
   }
 
+  ADXRS450_Gyro gyro;
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
@@ -108,6 +114,8 @@ public class Robot extends TimedRobot {
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
     rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
     m_robotContainer.getLimelight().setDriver();
+    gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+    //gyro.calibrate();
   }
 
   /**
@@ -122,6 +130,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    //Gyro Testing
+    System.out.println("-----");
+    System.out.println("Top: " + m_robotContainer.getIntake().getTopBlocked());
+    System.out.println("Bottom: " + m_robotContainer.getIntake().getBottomBlocked());
+    System.out.println("-----");
     //Run all nessasary commands during teleop periodic
     if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
       if(!rightJoy.getRawButton(Constants.BUTTON_R_LIMELIGHT)){ //Not limelight

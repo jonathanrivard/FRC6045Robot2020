@@ -53,8 +53,8 @@ public final class Constants {
     public static int PORT_MOTOR_LIFT = 1; //Victor SP PWM
     public static int PORT_MOTOR_INTAKE_WINCH = 0; //Spark PWM
     //Sensors
-    public static int PORT_ANALOG_ULTRASONIC_TOP = 0;
-    public static int PORT_ANALOG_ULTRASONIC_BOTTOM = 1;
+    public static int PORT_ANALOG_ULTRASONIC_TOP = 1;
+    public static int PORT_ANALOG_ULTRASONIC_BOTTOM = 0;
     //Scalers
     public static double SCALER_XBOX_CONTROLLER = 0.7;
     public static double SCALER_INTAKE_WHEEL = 0.5;

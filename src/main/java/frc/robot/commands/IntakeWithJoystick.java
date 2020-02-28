@@ -58,9 +58,6 @@ public class IntakeWithJoystick extends CommandBase {
     //Check for wheel
     if(leftJoy.getRawButton(Constants.BUTTON_L_INTAKE_WHEEL_IN) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_WHEEL_IN)){
       intake.setWheel(Constants.SCALER_INTAKE_WHEEL);
-      System.out.println("USensorTop: " + intake.getTopDistance());
-      System.out.println("USensorBot: " + intake.getBottomDistance());
-      System.out.println();
     }else if(leftJoy.getRawButton(Constants.BUTTON_L_INTAKE_WHEEL_OUT) || mainJoy.getRawButton(Constants.BUTTOn_M_INTAKE_WHEEL_OUT)){
       intake.setWheel(Constants.SCALER_INTAKE_WHEEL * -1);
     }else {
@@ -89,9 +86,6 @@ public class IntakeWithJoystick extends CommandBase {
     //Check for wheel
     if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_WHEEL_IN)){
       intake.setWheel(Constants.SCALER_INTAKE_WHEEL); //Wheel In
-      System.out.println("USensorTop: " + intake.getTopDistance());
-      System.out.println("USensorBot: " + intake.getBottomDistance());
-      System.out.println();
     }else if(mainJoy.getRawButton(Constants.BUTTOn_M_INTAKE_WHEEL_OUT)){
       intake.setWheel(Constants.SCALER_INTAKE_WHEEL * -1); //Wheel Out
     }else {

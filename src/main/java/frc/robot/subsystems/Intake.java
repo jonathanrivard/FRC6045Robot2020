@@ -45,8 +45,24 @@ public class Intake extends SubsystemBase {
     return topSensor.getValue();
   }
 
+  public boolean getTopBlocked(){
+    if(getTopDistance() > 10.0){
+      return false;
+    }else {
+      return true;
+    }
+  }
+
+  public boolean getBottomBlocked(){
+    if(getBottomDistance() > 10.0){
+      return false;
+    }else {
+      return true;
+    }
+  }
+
   public double getBottomDistance(){
-    return bottomSensor.getValue() * Constants.SCALER_ULTRASONIC_SENSOR;
+    return bottomSensor.getValue();
   }
 
   public Intake() {

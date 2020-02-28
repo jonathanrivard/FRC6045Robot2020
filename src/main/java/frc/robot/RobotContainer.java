@@ -56,6 +56,8 @@ public class RobotContainer {
   public FollowWithLimelight getFollowWithLimelight() { return m_followWithLimelight; }
   //Subsystem Getters
   public Limelight getLimelight(){ return m_limelight; }
+  public Drivetrain getDrivetrain() { return m_drivetrain; }
+  public Intake getIntake() { return m_intake; }
 
 
   /**
