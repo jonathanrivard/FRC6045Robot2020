@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -64,6 +65,7 @@ public class ShootWithJoystick extends CommandBase {
   }
 
   private void executeArcadeDrive(){
+    System.out.println("Time: " + Timer.getFPGATimestamp());
     //If our shoot button is pressed
     if(mainJoy.getRawButton(Constants.BUTTON_R_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_SHOOT)){
       //if(mainJoy.getTriggerAxis(Hand.kRight) > 0){

@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     //Settings
-    public static int SETTING_DRIVE_TYPE = 0; //0=tank ; 1=arcade
+    public static int SETTING_DRIVE_TYPE = 1; //0=tank ; 1=arcade
     //Joysticks
     public static int USB_XBOX_CONTROLLER = 3; //Xbox controller that may or may not be plugged in
     public static int USB_RIGHT_JOYSTICK = 2; //Rightmost joystick to the right of driver station
@@ -58,8 +58,8 @@ public final class Constants {
     //Scalers
     public static double SCALER_XBOX_CONTROLLER = 0.7;
     public static double SCALER_INTAKE_WHEEL = 0.5;
-    public static double SCALER_INTAKE_ELEVATOR = 0.2; //The Zuck Constant
-    public static double SCALER_INTAKE_WINCH = 0.3;
+    public static double SCALER_INTAKE_ELEVATOR = 0.25; //The Zuck Constant
+    public static double SCALER_INTAKE_WINCH = 0.6;
     public static double SCALER_LIFT = 1.0;
     public static double SCALER_DRIVE_FORWARD = 0.85;
     public static double SCALER_DRIVE_SIDE = 0.6;

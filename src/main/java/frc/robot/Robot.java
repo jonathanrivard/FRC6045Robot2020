@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
     
   }
 
-  ADXRS450_Gyro gyro;
+  //ADXRS450_Gyro gyro;
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
@@ -114,7 +114,7 @@ public class Robot extends TimedRobot {
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
     rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
     m_robotContainer.getLimelight().setDriver();
-    gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+    //gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
     //gyro.calibrate();
   }
 
@@ -130,11 +130,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    //Gyro Testing
-    System.out.println("-----");
-    System.out.println("Top: " + m_robotContainer.getIntake().getTopBlocked());
-    System.out.println("Bottom: " + m_robotContainer.getIntake().getBottomBlocked());
-    System.out.println("-----");
     //Run all nessasary commands during teleop periodic
     if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
       if(!rightJoy.getRawButton(Constants.BUTTON_R_LIMELIGHT)){ //Not limelight

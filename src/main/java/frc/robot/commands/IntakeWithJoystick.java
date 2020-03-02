@@ -76,7 +76,7 @@ public class IntakeWithJoystick extends CommandBase {
   private void executeArcadeDrive(){
     //If the intake button is pressed, activate motors
     //Check for elevator
-    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR) || mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_UP)){
+    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_UP)){
       intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1); //Elevator Up
     }else if(mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_DOWN)){
       intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR); //Elevator Down
@@ -134,8 +134,14 @@ public class IntakeWithJoystick extends CommandBase {
   public void execute() {
     if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
       executeTankDrive();
+      if(intake.getBottomBlocked() && !intake.getTopBlocked() && !(rightJoy.getRawButton(Constants.BUTTON_R_INTAKE_ELEVATOR_DOWN))){
+        intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1);
+      }
     }else { //Arcade Drive
       executeArcadeDrive();
+      if(intake.getBottomBlocked() && !intake.getTopBlocked() && !(mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_DOWN))){
+        intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1);
+      }
     }
   }
 
