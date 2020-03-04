@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -73,10 +74,22 @@ public class IntakeWithJoystick extends CommandBase {
     }
   }
 
+  boolean firstClick = true;
+  double startTime;
   private void executeArcadeDrive(){
+    if(!mainJoy.getRawButton(Constants.BUTTON_M_SHOOT)){
+      firstClick = true;
+    }
+    //Timer for spin up
+    if(firstClick == true){
+      startTime = Timer.getFPGATimestamp();
+      firstClick = false;
+    }
     //If the intake button is pressed, activate motors
     //Check for elevator
-    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_UP)){
+    if(mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_UP)){
+      intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1); //Elevator Up
+    }else if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) && Timer.getFPGATimestamp()-startTime > Constants.SETTING_SPIN_UP){
       intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR * -1); //Elevator Up
     }else if(mainJoy.getRawButton(Constants.BUTTON_M_ELEVATOR_DOWN)){
       intake.setElevator(Constants.SCALER_INTAKE_ELEVATOR); //Elevator Down
@@ -84,7 +97,7 @@ public class IntakeWithJoystick extends CommandBase {
       intake.setElevator(0.0);
     }
     //Check for wheel
-    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_WHEEL_IN)){
+    if(mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_AND_ELEVATOR_TWO) || mainJoy.getRawButton(Constants.BUTTON_M_INTAKE_WHEEL_IN)){
       intake.setWheel(Constants.SCALER_INTAKE_WHEEL); //Wheel In
     }else if(mainJoy.getRawButton(Constants.BUTTOn_M_INTAKE_WHEEL_OUT)){
       intake.setWheel(Constants.SCALER_INTAKE_WHEEL * -1); //Wheel Out

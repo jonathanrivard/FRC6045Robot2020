@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousCommand;
+import frc.robot.commands.ColorWheelWithJoystick;
 import frc.robot.commands.FollowWithLimelight;
 import frc.robot.commands.IntakeWithJoystick;
 import frc.robot.commands.LiftWithJoystick;
 import frc.robot.commands.ShootWithJoystick;
 import frc.robot.commands.ShootWithLimelight;
 import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lift;
@@ -38,6 +40,7 @@ public class RobotContainer {
   private final Intake m_intake = new Intake();
   private final Limelight m_limelight = new Limelight();
   private final Lift m_lift = new Lift();
+  private final ColorWheel m_colorWheel = new ColorWheel();
   //Commands
   private final ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_drivetrain);
   private final TankDrive m_tankDrive = new TankDrive(m_drivetrain);
@@ -46,6 +49,7 @@ public class RobotContainer {
   private final ShootWithLimelight m_shootWithLimelight = new ShootWithLimelight(m_limelight, m_shooterWheel, m_intake, m_drivetrain);
   private final LiftWithJoystick m_liftWithJoystick = new LiftWithJoystick(m_lift);
   private final FollowWithLimelight m_followWithLimelight = new FollowWithLimelight(m_limelight, m_drivetrain);
+  private final ColorWheelWithJoystick m_colorWheelWithJoystick = new ColorWheelWithJoystick(m_colorWheel);
   //Command Getters
   public ArcadeDrive getArcadeDrive(){ return m_arcadeDrive; }
   public TankDrive getTankDrive(){ return m_tankDrive; }
@@ -54,10 +58,12 @@ public class RobotContainer {
   public ShootWithLimelight getShootWithLimelight() { return m_shootWithLimelight; }
   public LiftWithJoystick getLiftWithJoystick() { return m_liftWithJoystick; }
   public FollowWithLimelight getFollowWithLimelight() { return m_followWithLimelight; }
+  public ColorWheelWithJoystick getColorWheelWithJoystick() { return m_colorWheelWithJoystick; }
   //Subsystem Getters
   public Limelight getLimelight(){ return m_limelight; }
   public Drivetrain getDrivetrain() { return m_drivetrain; }
   public Intake getIntake() { return m_intake; }
+  public ColorWheel getColorWheel(){ return m_colorWheel; }
 
 
   /**

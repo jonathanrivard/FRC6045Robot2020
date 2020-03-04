@@ -18,6 +18,7 @@ package frc.robot;
 public final class Constants {
     //Settings
     public static int SETTING_DRIVE_TYPE = 1; //0=tank ; 1=arcade
+    public static double SETTING_SPIN_UP = 1.5;
     //Joysticks
     public static int USB_XBOX_CONTROLLER = 3; //Xbox controller that may or may not be plugged in
     public static int USB_RIGHT_JOYSTICK = 2; //Rightmost joystick to the right of driver station
@@ -35,7 +36,8 @@ public final class Constants {
     public static int BUTTON_R_INTAKE_ELEVATOR_DOWN = 4;
     //  Main Joystick
     public static int BUTTON_M_SHOOT = 2;
-    public static int BUTTON_M_INTAKE_AND_ELEVATOR = 11;
+    public static int BUTTON_M_INTAKE_AND_ELEVATOR = 12;
+    public static int BUTTON_M_INTAKE_AND_ELEVATOR_TWO = 11;
     public static int BUTTON_M_ELEVATOR_UP = 8;
     public static int BUTTON_M_ELEVATOR_DOWN = 10;
     public static int BUTTON_M_INTAKE_WHEEL_IN = 7;
@@ -52,6 +54,7 @@ public final class Constants {
     public static int PORT_MOTOR_INTAKE_WHEEL = 8; //Victor SPX CAN
     public static int PORT_MOTOR_LIFT = 1; //Victor SP PWM
     public static int PORT_MOTOR_INTAKE_WINCH = 0; //Spark PWM
+    public static int PORT_MOTOR_COLOR_WHEEL = 2;
     //Sensors
     public static int PORT_ANALOG_ULTRASONIC_TOP = 1;
     public static int PORT_ANALOG_ULTRASONIC_BOTTOM = 0;

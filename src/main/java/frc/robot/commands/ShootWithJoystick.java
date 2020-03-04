@@ -64,22 +64,24 @@ public class ShootWithJoystick extends CommandBase {
       }
   }
 
+  boolean firstClick = true;
+  double startTime;
   private void executeArcadeDrive(){
-    System.out.println("Time: " + Timer.getFPGATimestamp());
     //If our shoot button is pressed
-    if(mainJoy.getRawButton(Constants.BUTTON_R_SHOOT) || mainJoy.getRawButton(Constants.BUTTON_M_SHOOT)){
+    if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT)){
       //if(mainJoy.getTriggerAxis(Hand.kRight) > 0){
         //Get scaler from slider on joystick
         double scaler = rightJoy.getRawAxis(3);
         //Adjust scaler to go from 0 to 1
         scaler = -0.5 * scaler + 0.5;
         //Set the shooter wheel with the slider scaler
-        shooterWheel.setWheel(-1 * scaler);
+        shooterWheel.setWheel(-1.0 * scaler);
         System.out.println("Shooter Percent: " + scaler);
         //shooterWheel.setWheel(mainJoy.getTriggerAxis(Hand.kRight) * -1);
     }else {
         //If the button is not pressed, stop wheel
         shooterWheel.setWheel(0.0);
+        firstClick = true;
     }
   }
 

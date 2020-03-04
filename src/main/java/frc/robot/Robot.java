@@ -126,10 +126,18 @@ public class Robot extends TimedRobot {
     m_robotContainer.getShootWithJoystick().schedule();
     m_robotContainer.getIntakeWithJoystick().schedule();
     m_robotContainer.getLiftWithJoystick().schedule();
+    m_robotContainer.getColorWheelWithJoystick().schedule();
   }
 
   @Override
   public void teleopPeriodic() {
+    System.out.println(m_robotContainer.getColorWheel().getColor());
+    /*
+    System.out.println("-----");
+    System.out.println("Top: " + m_robotContainer.getIntake().getTopDistance());
+    System.out.println("Bottom: " + m_robotContainer.getIntake().getBottomDistance());
+    System.out.println("-----");
+    */
     //Run all nessasary commands during teleop periodic
     if(Constants.SETTING_DRIVE_TYPE == 0){ //Tank Drive
       if(!rightJoy.getRawButton(Constants.BUTTON_R_LIMELIGHT)){ //Not limelight
