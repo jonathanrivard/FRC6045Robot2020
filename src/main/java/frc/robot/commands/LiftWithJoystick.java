@@ -40,7 +40,6 @@ public class LiftWithJoystick extends CommandBase {
   public void execute() {
     //Check POV of rightJoy
     if(rightJoy.getPOV() == 0){
-      System.out.println("Up");
       lift.setLift(Constants.SCALER_LIFT);
     }else if(rightJoy.getPOV() == 180){
       lift.setLift(Constants.SCALER_LIFT * -1);

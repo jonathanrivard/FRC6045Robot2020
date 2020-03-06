@@ -22,14 +22,20 @@ public class AutonomousCommand extends SequentialCommandGroup {
    */
   public AutonomousCommand(ShooterWheel m_shooterWheel, Intake m_intake, Drivetrain m_drivetrain) {
     addCommands(
-      new AutoShoot(m_shooterWheel, 0.3),
+      new AutoShoot(m_shooterWheel, 1.0),
       new WaitCommand(2),
       new AutoIntake(m_intake, 0.0, 0.3),
-      new WaitCommand(2),
+      new WaitCommand(4),
       new AutoShoot(m_shooterWheel, 0.0),
       new AutoIntake(m_intake, 0.0, 0.0),
       new AutoDrive(m_drivetrain, -0.8, -0.8),
-      new WaitCommand(5),
+      new WaitCommand(1),
+      new AutoDrive(m_drivetrain, -0.8, -0.8),
+      new WaitCommand(1),
+      new AutoDrive(m_drivetrain, -0.8, -0.8),
+      new WaitCommand(1),
+      new AutoDrive(m_drivetrain, -0.8, -0.8),
+      new WaitCommand(1),
       new AutoDrive(m_drivetrain, 0.0, 0.0));
   }
 }

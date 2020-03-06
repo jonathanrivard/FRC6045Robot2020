@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -15,6 +17,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -29,7 +32,10 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private Joystick mainJoy;
   private Joystick rightJoy;
+  private Joystick leftJoy;
   CameraServer server;
+  private boolean turnThreeClicked;
+  private boolean turnOnceClicked;
   
 
 
@@ -87,6 +93,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.getLimelight().setDriver();
   }
 
   /**
@@ -113,9 +120,14 @@ public class Robot extends TimedRobot {
     }
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
     rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
+    leftJoy = new Joystick(Constants.USB_LEFT_JOYSTICK);
     m_robotContainer.getLimelight().setDriver();
     //gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
     //gyro.calibrate();
+    //Smart Dashboard
+    SmartDashboard.putNumber("DriveType", Constants.SETTING_DRIVE_TYPE);
+    turnThreeClicked = false;
+    turnOnceClicked = false;
   }
 
   /**
@@ -127,11 +139,35 @@ public class Robot extends TimedRobot {
     m_robotContainer.getIntakeWithJoystick().schedule();
     m_robotContainer.getLiftWithJoystick().schedule();
     m_robotContainer.getColorWheelWithJoystick().schedule();
+
+    if(leftJoy.getRawButton(Constants.BUTTON_L_TURN_THREE_TIMES)){
+      if(!turnThreeClicked){
+        m_robotContainer.getTurnThreeTimes().resetValues();
+        turnThreeClicked = true;
+      }
+      m_robotContainer.getTurnThreeTimes().schedule();
+      //m_robotContainer.getTurnThreeTimes().printDebug();
+    }else {
+      turnThreeClicked = false;
+    }
+
+    if(leftJoy.getRawButton(Constants.BUTTON_L_TURN_ONCE)){
+      if(!turnOnceClicked){
+        m_robotContainer.getTurnOnce().resetValues();
+        turnOnceClicked = true;
+      }
+      m_robotContainer.getTurnOnce().schedule();
+      m_robotContainer.getTurnOnce().printDebug();
+    }else {
+      turnOnceClicked = false;
+    }
   }
 
   @Override
   public void teleopPeriodic() {
-    System.out.println(m_robotContainer.getColorWheel().getColor());
+    //Smart Dashboard
+    SmartDashboard.putString("Color", m_robotContainer.getColorWheel().getColor());
+    //System.out.println(NetworkTableInstance.getDefault().getTable("Smartdashboard").getEntry("DriveType").getDouble(-1.0));
     /*
     System.out.println("-----");
     System.out.println("Top: " + m_robotContainer.getIntake().getTopDistance());

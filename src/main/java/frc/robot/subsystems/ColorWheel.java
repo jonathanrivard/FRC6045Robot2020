@@ -92,18 +92,6 @@ public class ColorWheel extends SubsystemBase {
 
   public void setWheel(double d){ wheelMotor.set(d); }
 
-  public void turnFourTimes(){
-    //Figure out a way to turn the wheel so the color sensor senses four turns
-    //Note that each color is on the wheel twice
-    //Use a really slow speed for the wheel ie 0.1
-  }
-
-  public void turnToColor(String color){
-    //Figure out a way to spin the wheel until the sensor sees the color entered as the parameter
-    //The parameter with be the color as a string as "G", "Y", "R", or "B"
-    //Reminder that getColor() will return the color as a string in the format: "GREEN", "YELLOW", and so on
-  }
-
   public ColorWheel() {
     wheelMotor = new Spark(Constants.PORT_MOTOR_COLOR_WHEEL);
     i2cPort = I2C.Port.kOnboard;

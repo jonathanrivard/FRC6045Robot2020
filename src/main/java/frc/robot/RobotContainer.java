@@ -19,6 +19,8 @@ import frc.robot.commands.LiftWithJoystick;
 import frc.robot.commands.ShootWithJoystick;
 import frc.robot.commands.ShootWithLimelight;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.TurnOnce;
+import frc.robot.commands.TurnThreeTimes;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
@@ -50,6 +52,8 @@ public class RobotContainer {
   private final LiftWithJoystick m_liftWithJoystick = new LiftWithJoystick(m_lift);
   private final FollowWithLimelight m_followWithLimelight = new FollowWithLimelight(m_limelight, m_drivetrain);
   private final ColorWheelWithJoystick m_colorWheelWithJoystick = new ColorWheelWithJoystick(m_colorWheel);
+  private final TurnThreeTimes m_turnThreeTimes = new TurnThreeTimes(m_colorWheel);
+  private final TurnOnce m_turnOnce = new TurnOnce(m_colorWheel);
   //Command Getters
   public ArcadeDrive getArcadeDrive(){ return m_arcadeDrive; }
   public TankDrive getTankDrive(){ return m_tankDrive; }
@@ -59,6 +63,8 @@ public class RobotContainer {
   public LiftWithJoystick getLiftWithJoystick() { return m_liftWithJoystick; }
   public FollowWithLimelight getFollowWithLimelight() { return m_followWithLimelight; }
   public ColorWheelWithJoystick getColorWheelWithJoystick() { return m_colorWheelWithJoystick; }
+  public TurnThreeTimes getTurnThreeTimes() { return m_turnThreeTimes; }
+  public TurnOnce getTurnOnce() { return m_turnOnce; }
   //Subsystem Getters
   public Limelight getLimelight(){ return m_limelight; }
   public Drivetrain getDrivetrain() { return m_drivetrain; }

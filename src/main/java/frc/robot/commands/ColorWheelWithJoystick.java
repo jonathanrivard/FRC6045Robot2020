@@ -36,11 +36,11 @@ public class ColorWheelWithJoystick extends CommandBase {
   @Override
   public void execute() {
     if(leftJoy.getPOV() == 90){
-      colorWheel.setWheel(-0.2);
-      System.out.println("Right");
+      colorWheel.setWheel(-1.0 * Constants.SCALER_COLOR_WHEEL);
+      //System.out.println("Right");
     }else if(leftJoy.getPOV() == 270){
-      colorWheel.setWheel(0.2);
-      System.out.println("Left");
+      colorWheel.setWheel(1.0 * Constants.SCALER_COLOR_WHEEL);
+      //System.out.println("Left");
     }else {
       colorWheel.setWheel(0.0);
     }

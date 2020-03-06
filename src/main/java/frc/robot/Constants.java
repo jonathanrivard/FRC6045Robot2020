@@ -29,6 +29,8 @@ public final class Constants {
     public static int BUTTON_L_INTAKE_WHEEL_IN = 1;
     public static int BUTTON_L_INTAKE_ELEVATOR_UP = 2;
     public static int BUTTON_L_INTAKE_WHEEL_OUT = 3;
+    public static int BUTTON_L_TURN_THREE_TIMES = 4;
+    public static int BUTTON_L_TURN_ONCE = 5;
     //  Right Joystick
     public static int BUTTON_R_SHOOT = 1;
     public static int BUTTON_R_INTAKE_ElEVATOR_UP_R = 2;
@@ -64,9 +66,10 @@ public final class Constants {
     public static double SCALER_INTAKE_ELEVATOR = 0.25; //The Zuck Constant
     public static double SCALER_INTAKE_WINCH = 0.6;
     public static double SCALER_LIFT = 1.0;
-    public static double SCALER_DRIVE_FORWARD = 0.85;
-    public static double SCALER_DRIVE_SIDE = 0.6;
+    public static double SCALER_DRIVE_FORWARD = 1.0;
+    public static double SCALER_DRIVE_SIDE = 0.8;
     public static double SCALER_ULTRASONIC_SENSOR = 0.125;
+    public static double SCALER_COLOR_WHEEL = 0.3;
     //Threshholds
     public static double THRESHHOLD_JOYSTICKS = 0.01;
     public static double THRESHHOLD_LIMELIGHT_X = 1.5;

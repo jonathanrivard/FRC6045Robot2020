@@ -32,6 +32,7 @@ public class AutoDrive extends CommandBase {
   public void initialize() {
     
     System.out.println("Auto Drive Init");
+    drivetrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
