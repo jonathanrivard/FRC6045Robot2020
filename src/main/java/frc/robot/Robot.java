@@ -8,17 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.SPI.Port;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -108,7 +100,6 @@ public class Robot extends TimedRobot {
     
   }
 
-  //ADXRS450_Gyro gyro;
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
@@ -118,14 +109,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    //Init joysticks
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
     rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
     leftJoy = new Joystick(Constants.USB_LEFT_JOYSTICK);
+    //Make sure the limelight is in driver mode
     m_robotContainer.getLimelight().setDriver();
-    //gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-    //gyro.calibrate();
-    //Smart Dashboard
+    //Start setting up Smart Dashboard
     SmartDashboard.putNumber("DriveType", Constants.SETTING_DRIVE_TYPE);
+    //Init the booleans for activating the color wheel spinning
     turnThreeClicked = false;
     turnOnceClicked = false;
   }

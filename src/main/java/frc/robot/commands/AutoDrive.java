@@ -15,13 +15,16 @@ public class AutoDrive extends CommandBase {
    * Creates a new AutoDrive.
    */
 
+  //Declare instance variables
   private Drivetrain drivetrain;
-  double leftSpeed;
-  double rightSpeed;
+  //Variables for globalizing the speeds
+  private double leftSpeed;
+  private double rightSpeed;
 
   public AutoDrive(Drivetrain drivetrain, double leftSpeed, double rightSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
+    //Set instance variables
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
     this.drivetrain = drivetrain;
@@ -30,16 +33,13 @@ public class AutoDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
-    System.out.println("Auto Drive Init");
-    drivetrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //Sets the drivetrain to run with the passed speeds
     drivetrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
-    System.out.println("Auto Drive Execute");
   }
 
   // Called once the command ends or is interrupted.

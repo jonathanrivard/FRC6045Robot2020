@@ -17,13 +17,16 @@ public class ColorWheelWithJoystick extends CommandBase {
    * Creates a new ColorWheelWithJoystick.
    */
 
+  //Declare instance variables
   private ColorWheel colorWheel;
   private Joystick leftJoy;
 
   public ColorWheelWithJoystick(ColorWheel colorWheel) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(colorWheel);
+    //Set subsystem to passed value
     this.colorWheel = colorWheel;
+    //Init the left joystick
     leftJoy = new Joystick(Constants.USB_LEFT_JOYSTICK);
   }
 
@@ -37,10 +40,8 @@ public class ColorWheelWithJoystick extends CommandBase {
   public void execute() {
     if(leftJoy.getPOV() == 90){
       colorWheel.setWheel(-1.0 * Constants.SCALER_COLOR_WHEEL);
-      //System.out.println("Right");
     }else if(leftJoy.getPOV() == 270){
       colorWheel.setWheel(1.0 * Constants.SCALER_COLOR_WHEEL);
-      //System.out.println("Left");
     }else {
       colorWheel.setWheel(0.0);
     }

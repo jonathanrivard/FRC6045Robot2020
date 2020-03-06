@@ -15,6 +15,7 @@ public class AutoIntake extends CommandBase {
    * Creates a new AutoIntake.
    */
 
+  //Declare instance variables
   private Intake intake;
   private double wheelSpeed;
   private double elevatorSpeed;
@@ -22,6 +23,7 @@ public class AutoIntake extends CommandBase {
   public AutoIntake(Intake intake, double wheelSpeed, double elevatorSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(intake);
+    //Set instance variables to passed values
     this.intake = intake;
     this.wheelSpeed = wheelSpeed;
     this.elevatorSpeed = elevatorSpeed;

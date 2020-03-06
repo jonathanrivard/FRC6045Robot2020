@@ -21,18 +21,19 @@ public class AutonomousCommand extends SequentialCommandGroup {
    * Creates a new AutonomousCommand.
    */
   public AutonomousCommand(ShooterWheel m_shooterWheel, Intake m_intake, Drivetrain m_drivetrain) {
+    //Add the commands in sequence to create the autonomous
     addCommands(
-      new AutoShoot(m_shooterWheel, 1.0),
-      new WaitCommand(2),
-      new AutoIntake(m_intake, 0.0, 0.3),
-      new WaitCommand(4),
-      new AutoShoot(m_shooterWheel, 0.0),
-      new AutoIntake(m_intake, 0.0, 0.0),
-      new AutoDrive(m_drivetrain, -0.8, -0.8),
-      new WaitCommand(1),
-      new AutoDrive(m_drivetrain, -0.8, -0.8),
-      new WaitCommand(1),
-      new AutoDrive(m_drivetrain, -0.8, -0.8),
+      new AutoShoot(m_shooterWheel, 1.0), //Run shooter wheel
+      new WaitCommand(2), //Wait two seconds for spin up
+      new AutoIntake(m_intake, 0.0, 0.3), //Start running the elevator up
+      new WaitCommand(4), //Wait four seconds for the balls to feed into the shooter
+      new AutoShoot(m_shooterWheel, 0.0), //Turn off shooter wheel
+      new AutoIntake(m_intake, 0.0, 0.0), //Turn off elevator
+      new AutoDrive(m_drivetrain, -0.8, -0.8), //Set the drivetrain to drive backwards
+      new WaitCommand(1), //Wait one second
+      new AutoDrive(m_drivetrain, -0.8, -0.8), //Do it again because the auto drive only sends the value once :(
+      new WaitCommand(1), //Wait one second
+      new AutoDrive(m_drivetrain, -0.8, -0.8), //And so on
       new WaitCommand(1),
       new AutoDrive(m_drivetrain, -0.8, -0.8),
       new WaitCommand(1),

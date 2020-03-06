@@ -17,13 +17,16 @@ public class ArcadeDrive extends CommandBase {
    * Creates a new ArcadeDrive.
    */
 
-  Drivetrain drivetrain;
-  Joystick mainJoy;
+  //Declare instance variables
+  private Drivetrain drivetrain;
+  private Joystick mainJoy;
 
   public ArcadeDrive(Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
+    //Set the drivetrain to passed value
     this.drivetrain = drivetrain;
+    //Init joystick
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
   }
 

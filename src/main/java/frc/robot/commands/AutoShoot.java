@@ -15,12 +15,14 @@ public class AutoShoot extends CommandBase {
    * Creates a new AutoShoot.
    */
 
+  //Declare instance variables
   private ShooterWheel shooterWheel;
   private double speed;
 
   public AutoShoot(ShooterWheel shooterWheel, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooterWheel);
+    //Set instance variables to passed values
     this.shooterWheel = shooterWheel;
     this.speed = speed;
   }
@@ -28,6 +30,7 @@ public class AutoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //Set the wheel speed using the subsystem
     shooterWheel.setWheel(speed * -1);
   }
 

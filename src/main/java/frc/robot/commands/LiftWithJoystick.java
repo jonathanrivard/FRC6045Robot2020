@@ -24,7 +24,9 @@ public class LiftWithJoystick extends CommandBase {
   public LiftWithJoystick(Lift lift) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(lift);
+    //Set lift to passed subsystem
     this.lift = lift;
+    //Init the joystick
     rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
   }
 
@@ -40,11 +42,11 @@ public class LiftWithJoystick extends CommandBase {
   public void execute() {
     //Check POV of rightJoy
     if(rightJoy.getPOV() == 0){
-      lift.setLift(Constants.SCALER_LIFT);
+      lift.setLift(Constants.SCALER_LIFT); //Set the lift to forward
     }else if(rightJoy.getPOV() == 180){
-      lift.setLift(Constants.SCALER_LIFT * -1);
+      lift.setLift(Constants.SCALER_LIFT * -1); //Set the lift to backwards (rewind up)
     }else {
-      lift.setLift(0.0);
+      lift.setLift(0.0); //Otherwise, stop the lift
     }
   }
 

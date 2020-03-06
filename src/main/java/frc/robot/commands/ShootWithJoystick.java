@@ -8,9 +8,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
-//import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShooterWheel;
@@ -25,17 +22,13 @@ public class ShootWithJoystick extends CommandBase {
   Limelight limelight;
   Joystick mainJoy;
   Joystick rightJoy;
-  //XboxController mainJoy;
 
   public ShootWithJoystick(ShooterWheel shooterWheel) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooterWheel);
-    //addRequirements(limelight);
     this.shooterWheel = shooterWheel;
-    //this.limelight = limelight;
     mainJoy = new Joystick(Constants.USB_MAIN_JOYSTICK);
     rightJoy = new Joystick(Constants.USB_RIGHT_JOYSTICK);
-    //mainJoy = new XboxController(Constants.USB_XBOX_CONTROLLER);
   }
 
   // Called when the command is initially scheduled.
@@ -49,7 +42,6 @@ public class ShootWithJoystick extends CommandBase {
   private void executeTankDrive(){
     //If our shoot button is pressed
     if(rightJoy.getRawButton(Constants.BUTTON_R_SHOOT)){
-      //if(mainJoy.getTriggerAxis(Hand.kRight) > 0){
         //Get scaler from slider on joystick
         double scaler = rightJoy.getRawAxis(3);
         //Adjust scaler to go from 0 to 1
@@ -64,8 +56,6 @@ public class ShootWithJoystick extends CommandBase {
       }
   }
 
-  boolean firstClick = true;
-  double startTime;
   private void executeArcadeDrive(){
     //If our shoot button is pressed
     if(mainJoy.getRawButton(Constants.BUTTON_M_SHOOT)){
@@ -82,7 +72,6 @@ public class ShootWithJoystick extends CommandBase {
     }else {
         //If the button is not pressed, stop wheel
         shooterWheel.setWheel(0.0);
-        firstClick = true;
     }
   }
 

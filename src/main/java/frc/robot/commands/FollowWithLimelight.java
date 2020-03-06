@@ -16,6 +16,7 @@ public class FollowWithLimelight extends CommandBase {
    * Creates a new FollowWithLimelight.
    */
 
+  //Declare instance variables
   Limelight limelight;
   Drivetrain drivetrain;
 
@@ -23,6 +24,7 @@ public class FollowWithLimelight extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(limelight);
     addRequirements(drivetrain);
+    //Set instance variables to passed values
     this.limelight = limelight;
     this.drivetrain = drivetrain;
   }
@@ -35,6 +37,7 @@ public class FollowWithLimelight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //Set turn value to an abs function based of the distance of x difference
     double turnValue = 0.5 * (Math.abs(limelight.getX())/20);
     double forwardValue = 0;
     //forwardValue = -.09 * area + .9;

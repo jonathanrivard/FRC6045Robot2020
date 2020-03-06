@@ -76,7 +76,7 @@ public final class Constants {
     //Limelight Constants
     public static boolean LIMELIGHT_DEBUG = false;
     public static double LIMELIGHT_TURN_MAX_X = 22.0;
-    public static double LIMELIGHT_TURN_MAX_SPEED = 0.5;
-    public static double LIMELIGHT_TURN_MIN_SPEED = 0.3;
+    public static double LIMELIGHT_TURN_MAX_SPEED = 0.7;
+    public static double LIMELIGHT_TURN_MIN_SPEED = 0.4;
     public static double LIMELIGHT_DELAY_START = 500;
 }

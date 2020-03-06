@@ -31,21 +31,26 @@ public class ShootWithLimelight extends CommandBase {
 
   public ShootWithLimelight(Limelight limelight, ShooterWheel shooterWheel, Intake intake, Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
+    //Add all the subsystems that the command requires
     addRequirements(limelight);
     addRequirements(shooterWheel);
     addRequirements(intake);
     addRequirements(drivetrain);
+    //Set the subsystems that the command requires
     this.limelight = limelight;
     this.shooterWheel = shooterWheel;
     this.intake = intake;
     this.drivetrain = drivetrain;
+    //Init the lastValues ArrayList
     lastValues = new ArrayList<Double>();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //Get the start time
     startTime = System.currentTimeMillis();
+    //Set the shooterwheel to full force forward so it's always running if the command is active
     shooterWheel.setWheel(-1.0);
   }
 
