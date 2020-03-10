@@ -24,7 +24,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
     //Add the commands in sequence to create the autonomous
     addCommands(
       new AutoShoot(m_shooterWheel, 1.0), //Run shooter wheel
-      new WaitCommand(2), //Wait two seconds for spin up
+      new WaitCommand(6), //Wait two seconds for spin up
       new AutoIntake(m_intake, 0.0, 0.3), //Start running the elevator up
       new WaitCommand(4), //Wait four seconds for the balls to feed into the shooter
       new AutoShoot(m_shooterWheel, 0.0), //Turn off shooter wheel

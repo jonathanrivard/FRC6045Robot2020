@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     //Settings
-    public static int SETTING_DRIVE_TYPE = 1; //0=tank ; 1=arcade
+    public static int SETTING_DRIVE_TYPE = 0; //0=tank ; 1=arcade
     public static double SETTING_SPIN_UP = 1.5;
     //Joysticks
     public static int USB_XBOX_CONTROLLER = 3; //Xbox controller that may or may not be plugged in
@@ -74,7 +74,7 @@ public final class Constants {
     public static double THRESHHOLD_JOYSTICKS = 0.01;
     public static double THRESHHOLD_LIMELIGHT_X = 1.5;
     //Limelight Constants
-    public static boolean LIMELIGHT_DEBUG = false;
+    public static boolean LIMELIGHT_DEBUG = true;
     public static double LIMELIGHT_TURN_MAX_X = 22.0;
     public static double LIMELIGHT_TURN_MAX_SPEED = 0.7;
     public static double LIMELIGHT_TURN_MIN_SPEED = 0.4;

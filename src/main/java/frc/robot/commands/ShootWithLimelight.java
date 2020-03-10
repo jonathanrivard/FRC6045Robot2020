@@ -27,6 +27,8 @@ public class ShootWithLimelight extends CommandBase {
   private Drivetrain drivetrain;
   private ArrayList<Double> lastValues;
   private double startTime;
+  private double xDiff;
+  private boolean tape;
 
 
   public ShootWithLimelight(Limelight limelight, ShooterWheel shooterWheel, Intake intake, Drivetrain drivetrain) {
@@ -58,25 +60,26 @@ public class ShootWithLimelight extends CommandBase {
   @Override
   public void execute() {
     //Get X Difference from limelight
-    double xDiff = limelight.getX();
+    xDiff = limelight.getX();
     //Declare variable to check if we can see the reflective tape
-    boolean tape;
+    tape = true;
 
     //If our array list is still being fed up to 10
     if(lastValues.size() < 10){
       //Add the current value
-      lastValues.add(xDiff);
+      //lastValues.add(xDiff);
       //Pretend we can't see the tape so the robot doesn't move
-      tape = false;
+      tape = true;
     }else {
       //There is 10 in the array
       //Cycle a new value into the array
-      lastValues.remove(0);
-      lastValues.add(xDiff);
+      //lastValues.remove(0);
+      //lastValues.add(xDiff);
       //Declare some variables to keep track of
-      int zeros = 0; //How many "0.0"s there are (probably can't see tape)
-      double average = 0.0; //The average of the numbers that arn't zero
+      //int zeros = 0; //How many "0.0"s there are (probably can't see tape)
+      //double average = 0.0; //The average of the numbers that arn't zero
       //Cycle through array list and find amount of zeros and average of nonzeros
+      /*
       for(int i = 0; i < lastValues.size(); i++){
         if(lastValues.get(i) == 0.0){
           zeros++;
@@ -84,16 +87,17 @@ public class ShootWithLimelight extends CommandBase {
           average += lastValues.get(i);
         }
       }
+      */
       //Divide to find average
-      average /= lastValues.size() - zeros;
+      //average /= lastValues.size() - zeros;
       //Set the xDiff to the average of the nonzeros in the array
-      xDiff = average;
+      //xDiff = average;
       //If more than 7 of the values are zeros, be probably are not getting a valid reading
-      if(zeros >= 7){
-        tape = false;
-      }else {
-        tape = true;
-      }
+      //if(zeros >= 7){
+        //tape = false;
+      //}else {
+        //tape = true;
+      //}
 
     }
 
